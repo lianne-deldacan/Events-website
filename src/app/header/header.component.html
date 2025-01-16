@@ -1,22 +1,41 @@
 <header class="bg-[#776B5D] sticky top-0 shadow-md">
-  <div class="container mx-auto flex justify-between items-center py-4 px-6">
+  <div class="container mx-auto flex items-center justify-between py-4 px-6">
     <!-- Logo Section -->
-    <div class="flex items-center">
-      <img src="assets/logo.png" alt="Logo" class="w-12 h-12 mr-4" />
-      <h1 class="text-white text-2xl font-bold font-playfair">Events</h1>
+    <div class="flex items-center space-x-3">
+      <img src="assets/logo.png" alt="Logo" class="h-20 w-auto transition-transform duration-300 hover:scale-110">
+      <h1 class="text-white text-2xl font-playfair font-bold">Timeless Events PH</h1>
     </div>
 
     <!-- Navigation Links -->
-    <nav class="flex space-x-6 transition-transform transform hover:translate-y-1 duration-300 ease-in-out">
-      <a href="#" class="text-white font-lato text-lg transition-transform transform hover:scale-110">Home</a>
-      <a href="#" class="text-white font-lato text-lg transition-transform transform hover:scale-110">About</a>
-      <a href="#" class="text-white font-lato text-lg transition-transform transform hover:scale-110">Services</a>
-      <a href="#" class="text-white font-lato text-lg transition-transform transform hover:scale-110">Careers</a>
+    <nav class="flex space-x-6">
+      <a href="#" class="text-white text-lg font-lato transition-all duration-300 hover:text-gray-300">
+        Home
+      </a>
+      <a href="#" class="text-white text-lg font-lato transition-all duration-300 hover:text-gray-300">
+        About
+      </a>
+      <a href="#" class="text-white text-lg font-lato transition-all duration-300 hover:text-gray-300">
+        Services
+      </a>
+      <a href="#" class="text-white text-lg font-lato transition-all duration-300 hover:text-gray-300">
+        Career
+      </a>
       <a href="#"
-        class="text-[#776B5D] bg-[#FFD700] px-4 py-2 rounded font-lato font-bold text-lg transition-all transform hover:bg-white hover:scale-105">
+        class="text-[#F4C095] text-lg font-playfair font-semibold transition-all duration-300 hover:text-[#FAD6B8]">
         Book
       </a>
     </nav>
-    
+
+    <!-- Login Button -->
+    <button
+      class="flex items-center space-x-2 bg-gray-200 text-[#776B5D] py-2 px-4 rounded-lg transition-all duration-300 hover:bg-gray-300">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+        class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+      </svg>
+      <span class="font-lato text-lg">Login</span>
+    </button>
+
   </div>
 </header>

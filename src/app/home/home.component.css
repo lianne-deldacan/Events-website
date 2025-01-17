@@ -1,0 +1,16 @@
+.group {
+  position: relative;
+}
+
+.group img {
+  border-radius: 0.5rem;
+}
+
+.group:hover .group-hover\:scale-110 {
+  transform: scale(1.1);
+}
+
+.group:hover .group-hover\:opacity-80 {
+  opacity: 0.8;
+}
+

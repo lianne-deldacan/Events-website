@@ -54,6 +54,8 @@ export class HomeComponent implements OnInit {
     },
   ];
 
+   gallery = Array.from({ length: 18 }, (_, index) => `assets/gallery-${index + 1}.png`);
+
   constructor() { }
   
   ngOnInit(): void {

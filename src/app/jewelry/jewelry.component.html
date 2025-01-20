@@ -1,1 +1,10 @@
-<p>jewelry works!</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
+  <div *ngFor="let ring of rings" class="bg-white rounded-lg shadow-md overflow-hidden max-w-xs mx-auto">
+    <img [src]="ring.imageUrl" alt="{{ ring.name }}" class="w-full h-60 object-cover">
+    <div class="p-4">
+      <h3 class="text-xl font-semibold text-center">{{ ring.name }}</h3>
+      <p class="text-gray-600 text-center mt-2">Price: ${{ ring.price }}</p>
+      <p class="text-gray-600 text-center mt-2">{{ ring.description }}</p>
+    </div>
+  </div>
+</div>

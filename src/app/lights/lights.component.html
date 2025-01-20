@@ -1,1 +1,13 @@
-<p>lights works!</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6 p-4">
+  <!-- Loop through packages -->
+  <div *ngFor="let package of packages" class="bg-white rounded-lg shadow-md overflow-hidden p-4">
+    <h3 class="text-2xl font-semibold text-center">{{ package.name }}</h3>
+    <p class="text-gray-600 text-center mt-2">{{ package.description }}</p>
+    <div class="mt-4">
+      <h4 class="text-xl font-medium">Features:</h4>
+      <ul class="list-disc pl-5 mt-2">
+        <li *ngFor="let feature of package.features">{{ feature }}</li>
+      </ul>
+    </div>
+  </div>
+</div>

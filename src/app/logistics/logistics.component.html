@@ -1,1 +1,11 @@
-<p>logistics works!</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6 p-4">
+  <div *ngFor="let package of logisticsPackages" class="bg-white rounded-lg shadow-md overflow-hidden">
+    <div class="p-4">
+      <h3 class="text-xl font-semibold">{{ package.name }}</h3>
+      <p class="text-gray-600 mt-2">{{ package.description }}</p>
+      <ul class="list-disc list-inside mt-4 text-gray-600">
+        <li *ngFor="let feature of package.features">{{ feature }}</li>
+      </ul>
+    </div>
+  </div>
+</div>

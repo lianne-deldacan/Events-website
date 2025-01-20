@@ -1,0 +1,27 @@
+/* Custom styles for rings component */
+.bg-white {
+  background-color: #fff;
+}
+.max-w-xs {
+  max-width: 300px;
+}
+.text-xl {
+  font-size: 1.25rem;
+}
+.font-semibold {
+  font-weight: 600;
+}
+.text-gray-600 {
+  color: #4b5563;
+}
+.text-center {
+  text-align: center;
+}
+.mt-2 {
+  margin-top: 0.5rem;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+}

@@ -1,1 +1,9 @@
-<p>souvenirs works!</p>
+<div class="flex flex-wrap justify-center gap-8">
+  <div *ngFor="let souvenir of souvenirs" class="bg-white rounded-lg shadow-md overflow-hidden max-w-xs mx-auto">
+    <img [src]="souvenir.imageUrl" alt="{{ souvenir.name }}" class="w-full h-60 object-cover">
+    <div class="p-4">
+      <h3 class="text-xl font-semibold text-center">{{ souvenir.name }}</h3>
+      <p class="text-gray-600 text-center mt-2">{{ souvenir.description }}</p>
+    </div>
+  </div>
+</div>

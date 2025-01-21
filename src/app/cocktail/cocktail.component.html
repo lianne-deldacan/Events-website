@@ -1,1 +1,23 @@
-<p>cocktail works!</p>
+<div class="container mx-auto p-6">
+  <div class="text-center mb-12">
+    <h2 class="text-3xl font-bold text-gray-700">Cocktail Mobile Bar Packages</h2>
+    <p class="text-gray-500">Choose from our carefully curated packages for your event!</p>
+  </div>
+
+  <!-- Packages -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- Loop through cocktail packages dynamically -->
+    <a *ngFor="let pkg of cocktailPackages" href="#"
+      class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ pkg.name }}</h5>
+      <p class="mb-4 font-semibold text-gray-700 dark:text-gray-400">₱{{ pkg.price }} per pax</p>
+      <ul class="font-normal text-gray-700 dark:text-gray-400 space-y-2">
+        <li><strong>Cocktails (Choose {{ pkg.categories.cocktails.count }}):</strong> {{
+          pkg.categories.cocktails.list.join(', ') }}</li>
+        <li><strong>Wines (Choose {{ pkg.categories.wines.count }}):</strong> {{ pkg.categories.wines.list.join(', ') }}
+        </li>
+        <li><strong>Add-ons:</strong> {{ pkg.categories.addOns.join(', ') }}</li>
+      </ul>
+    </a>
+  </div>
+</div>

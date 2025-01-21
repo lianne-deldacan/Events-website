@@ -15,12 +15,16 @@ import { LightsComponent } from './lights/lights.component';
 import { CateringComponent } from './catering/catering.component';
 import { SouvenirsComponent } from './souvenirs/souvenirs.component';
 import { LogisticsComponent } from './logistics/logistics.component';
+import { BookComponent } from './book/book.component';
+import { CareersComponent } from './careers/careers.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'home', component: HomeComponent},
   { path: 'about', component: AboutComponent},
   { path: 'service', component: PricingComponent},
+  { path: 'book', component: BookComponent},
+  { path: 'career', component: CareersComponent},
   { path: 'florist', component: FloristComponent},
   { path: 'photography', component: PhotographyComponent},
   { path: 'dessert', component: DessertComponent},
@@ -32,7 +36,8 @@ const routes: Routes = [
   { path: 'lights', component: LightsComponent},
   { path: 'catering', component: CateringComponent},
   { path: 'souvenirs', component: SouvenirsComponent},
-  { path: 'logistics', component: LogisticsComponent}
+  { path: 'logistics', component: LogisticsComponent},
+  { path: 'catering', component: CateringComponent}
 ];
 
 @NgModule({

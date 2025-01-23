@@ -23,7 +23,8 @@ import { CateringComponent } from './catering/catering.component';
 import { SouvenirsComponent } from './souvenirs/souvenirs.component';
 import { LogisticsComponent } from './logistics/logistics.component';
 import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
+import { SignUpComponent } from './signup/signup.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -48,11 +49,13 @@ import { SignupComponent } from './signup/signup.component';
     SouvenirsComponent,
     LogisticsComponent,
     LoginComponent,
-    SignupComponent
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,38 +1,38 @@
-const Customer = require('../models/Customer');
+const User = require('../models/User');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
-// Login customer
-exports.loginCustomer = async (req, res) => {
+// Login user
+exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const customer = await Customer.findOne({ email });
+    const user = await User.findOne({ email });
 
-    if (!customer) {
-      return res.status(404).json({ message: 'Customer not found' });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
     }
 
-    if (customer.password !== password) {
+    if (user.password !== password) {
       return res.status(401).json({ message: 'Invalid password' });
     }
 
-    const token = customer.getJwtToken()
+    const token = user.getJwtToken()
   console.log(token);
 
     res.status(200).json({
       message: 'Login successful',
-      customer,
+      user,
       token,
     });
   } catch (err) {
-    console.error('Error logging in customer:', err.message);
+    console.error('Error logging in user:', err.message);
     res.status(500).json({ message: 'Server error', error: err.message });
   }
 };
 
-// Signup customer
-exports.signupCustomer = async (req, res) => {
+// Signup user
+exports.signupUser = async (req, res) => {
   const { firstName, lastName, email, password, phoneNumber, address } = req.body;
   
   try {
@@ -40,15 +40,15 @@ exports.signupCustomer = async (req, res) => {
       return res.status(400).json({ message: 'All fields are required' });
     }
 
-    const existingCustomer = await Customer.findOne({email:email});
+    const existingUser = await User.findOne({email:email});
 
-    if(existingCustomer){
+    if(existingUser){
       return res.status(400).json({ message: 'Email is already registered' });
     }
     
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const customer = new Customer({
+    const user = new User({
       _id: new mongoose.Types.ObjectId(),
       firstName,
       lastName,
@@ -58,19 +58,19 @@ exports.signupCustomer = async (req, res) => {
       address,
     });
 
-    const newCustomer = await customer.save();
+    const newUser = await user.save();
 
-    const token = newCustomer.getJwtToken()
+    const token = newUser.getJwtToken()
     console.log(token);
 
     return res.status(200).json({
       message: 'Signup successful',
-      customer: newCustomer,
+      user: newUser,
       token,
     });
     
   } catch (err) {
-    console.error('Error signing up customer:', err.message);
+    console.error('Error signing up user:', err.message);
     res.status(500).json({ message: 'Server error', error: err.message });
   }
 }

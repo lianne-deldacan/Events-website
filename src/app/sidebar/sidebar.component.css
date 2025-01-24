@@ -1,0 +1,23 @@
+aside {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #1a202c;
+  color: white;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  display: block;
+  transition: background-color 0.3s ease;
+}
+
+a:hover {
+  background-color: #2d3748; /* Lighter dark gray */
+}

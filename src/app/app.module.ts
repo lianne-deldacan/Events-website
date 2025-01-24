@@ -25,6 +25,12 @@ import { LogisticsComponent } from './logistics/logistics.component';
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './signup/signup.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { RouterModule } from '@angular/router';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -49,15 +55,22 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SouvenirsComponent,
     LogisticsComponent,
     LoginComponent,
-    SignUpComponent
+    SignUpComponent,
+    AdminLayoutComponent,
+    AdminDashboardComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
+    RouterModule,
+    
   ],
-  providers: [],
+  exports: [RouterModule, SidebarComponent],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

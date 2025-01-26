@@ -6,6 +6,7 @@ const dotenv = require('dotenv');
 const bookingRoutes = require('./routes/book.routes');
 const authRoutes = require('./routes/auth.routes');
 
+
 // Load environment variables
 dotenv.config();
 

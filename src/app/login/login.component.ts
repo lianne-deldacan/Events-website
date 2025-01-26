@@ -23,28 +23,26 @@ export class LoginComponent {
     });
   }
 
-onSubmit() {
-  if (this.loginForm.valid) {
-    console.log(this.loginForm.value);
-    
-    const { email, password } = this.loginForm.value;
+  onSubmit() {
+    if (this.loginForm.valid) {
+      const { email, password } = this.loginForm.value;
 
-    this.authService.login(email, password).subscribe({
-      next: (response: any) => {
-        alert('Login successful');
-        
-        // Storing the customer data in sessionStorage
-        sessionStorage.setItem('token', JSON.stringify(response.token));
-        sessionStorage.setItem('customer', JSON.stringify(response.customer));
+      this.authService.login(email, password).subscribe({
+        next: (response: any) => {
+          alert('Login successful');
+          
+          // Save token and user details in session storage
+          sessionStorage.setItem('token', response.token);
+          sessionStorage.setItem('user', JSON.stringify(response.user));
 
-        // Redirect to the dashboard or another page
-        this.router.navigate(['/home']);
-      },
-      error: (error) => {
-        console.error('Login failed:', error);
-        this.errorMessage = 'Invalid email or password';
-      },
-    });
+          // Redirect to the home or dashboard
+          this.router.navigate(['/home']);
+        },
+        error: (error) => {
+          console.error('Login failed:', error);
+          this.errorMessage = 'Invalid email or password';
+        },
+      });
+    }
   }
-}
 }

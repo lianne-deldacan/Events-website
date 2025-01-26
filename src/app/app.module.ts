@@ -31,6 +31,8 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
 import { AuthService } from './services/auth.service';
+import { AdminBookingsComponent } from './admin-bookings/admin-bookings.component';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,9 @@ import { AuthService } from './services/auth.service';
     SignUpComponent,
     AdminLayoutComponent,
     AdminDashboardComponent,
-    SidebarComponent
+    SidebarComponent,
+    AdminBookingsComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,

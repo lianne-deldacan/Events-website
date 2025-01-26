@@ -1,0 +1,46 @@
+<div class="container mx-auto p-6">
+  <h2 class="text-xl font-bold mb-4">Booking Management</h2>
+
+  <!-- Show message if no bookings -->
+  <div *ngIf="!bookings || bookings.length === 0" class="text-center text-gray-500">
+    No bookings to display.
+  </div>
+
+  <!-- Table for displaying bookings -->
+  <div *ngIf="bookings && bookings.length > 0">
+    <table class="table-auto w-full border-collapse border border-gray-200">
+      <thead>
+        <tr class="bg-gray-100">
+          <th class="border px-4 py-2">Name</th>
+          <th class="border px-4 py-2">Email</th>
+          <th class="border px-4 py-2">Phone</th>
+          <th class="border px-4 py-2">Event Type</th>
+          <th class="border px-4 py-2">Participants</th>
+          <th class="border px-4 py-2">Date</th>
+          <th class="border px-4 py-2">Time</th>
+          <th class="border px-4 py-2">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Loop through bookings array -->
+        <tr *ngFor="let booking of bookings">
+          <td class="border px-4 py-2">{{ booking?.name }}</td>
+          <td class="border px-4 py-2">{{ booking?.email }}</td>
+          <td class="border px-4 py-2">{{ booking?.phone }}</td>
+          <td class="border px-4 py-2">{{ booking?.eventType }}</td>
+          <td class="border px-4 py-2">{{ booking?.participants }}</td>
+          <td class="border px-4 py-2">{{ booking?.appointmentDate | date }}</td>
+          <td class="border px-4 py-2">{{ booking?.appointmentTime }}</td>
+          <td class="border px-4 py-2">
+            <button (click)="editBooking(booking?._id)" class="bg-blue-500 text-white px-3 py-1 rounded">
+              Edit
+            </button>
+            <button (click)="deleteBooking(booking?._id)" class="bg-red-500 text-white px-3 py-1 rounded">
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

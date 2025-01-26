@@ -1,19 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';  // Ensure HttpClient is imported
-import { Observable } from 'rxjs';
-import { Router } from '@angular/router'; 
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  styleUrls: ['./signup.component.css'],
 })
 export class SignUpComponent implements OnInit {
   signUpForm!: FormGroup;
+  errorMessage: string = '';
 
-  // Inject HttpClient in the constructor
-  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.signUpForm = this.fb.group({
@@ -22,44 +25,33 @@ export class SignUpComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
       phoneNumber: ['', [Validators.required]],
-      address: ['', [Validators.required]]
+      address: ['', [Validators.required]],
     });
   }
 
   onSubmit(): void {
     if (this.signUpForm.valid) {
-      const { firstName, lastName, email, password, phoneNumber, address } = this.signUpForm.value;
+      const { firstName, lastName, email, password, phoneNumber, address } =
+        this.signUpForm.value;
 
-      // Call signup method and pass form values
-      this.signup(firstName, lastName, email, password, phoneNumber, address).subscribe(
-        (response) => {
-          console.log('Signup successful:', response);
-
-          // Storing the customer data in sessionStorage
-        sessionStorage.setItem('token', JSON.stringify(response.token));
-        sessionStorage.setItem('customer', JSON.stringify(response.customer));
-        
-           this.router.navigate(['/products-page']);
-
-
-          // Handle the successful response (e.g., redirect to login page or show a success message)
-        },
-        (error) => {
-          console.error('Signup failed:', error);
-          // Handle error (e.g., show an error message)
-        }
-      );
+      this.authService
+        .signup(firstName, lastName, email, password, phoneNumber, address)
+        .subscribe({
+          next: (response: any) => {
+            alert('Signup successful!');
+            
+            // Save token and user details in session storage
+            sessionStorage.setItem('token', response.token);
+            sessionStorage.setItem('user', JSON.stringify(response.user));
+            
+            // Redirect to the products page or home
+            this.router.navigate(['/products-page']);
+          },
+          error: (error) => {
+            console.error('Signup failed:', error);
+            this.errorMessage = 'Signup failed. Please try again.';
+          },
+        });
     }
-  }
-
-  signup(firstName: string, lastName: string, email: string, password: string, phoneNumber: string, address: string): Observable<any> {
-    return this.http.post('http://localhost:5000/api/auth/signup', {
-      firstName,
-      lastName,
-      email,
-      password,
-      phoneNumber,
-      address
-    });
   }
 }

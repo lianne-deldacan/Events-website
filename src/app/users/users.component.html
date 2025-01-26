@@ -1,0 +1,44 @@
+<div class="container mx-auto p-6">
+  <h2 class="text-xl font-bold mb-4">Users Management</h2>
+
+  <!-- Show message if no users -->
+  <div *ngIf="!users || users.length === 0" class="text-center text-gray-500">
+    No users to display.
+  </div>
+
+  <!-- Table for displaying users -->
+  <div *ngIf="users && users.length > 0">
+    <table class="table-auto w-full border-collapse border border-gray-200">
+      <thead>
+        <tr class="bg-gray-100">
+          <th class="border px-4 py-2">ID</th>
+          <th class="border px-4 py-2">First Name</th>
+          <th class="border px-4 py-2">Last Name</th>
+          <th class="border px-4 py-2">Email</th>
+          <th class="border px-4 py-2">Phone</th>
+          <th class="border px-4 py-2">Address</th>
+          <th class="border px-4 py-2">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Loop through users array -->
+        <tr *ngFor="let user of users">
+          <td class="border px-4 py-2">{{ user?.id }}</td>
+          <td class="border px-4 py-2">{{ user?.firstName }}</td>
+          <td class="border px-4 py-2">{{ user?.lastName }}</td>
+          <td class="border px-4 py-2">{{ user?.email }}</td>
+          <td class="border px-4 py-2">{{ user?.phoneNumber }}</td>
+          <td class="border px-4 py-2">{{ user?.address }}</td>
+          <td class="border px-4 py-2">
+            <button (click)="editUser(user?.id)" class="bg-blue-500 text-white px-3 py-1 rounded">
+              Edit
+            </button>
+            <button (click)="deleteUser(user?.id)" class="bg-red-500 text-white px-3 py-1 rounded">
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

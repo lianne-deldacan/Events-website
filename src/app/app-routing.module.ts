@@ -21,6 +21,8 @@ import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './signup/signup.component';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { AdminBookingsComponent } from './admin-bookings/admin-bookings.component';
+import { UsersComponent } from './users/users.component';
 
 // Add placeholder components for admin subroutes (replace these with actual components)
 // import { UsersComponent } from './admin-users/users.component';
@@ -57,8 +59,8 @@ const routes: Routes = [
     component: AdminLayoutComponent,
     children: [
       { path: 'dashboard', component: AdminDashboardComponent },
-      // { path: 'users', component: UsersComponent }, // Replace with actual UsersComponent
-      // { path: 'books', component: BooksComponent }, // Replace with actual BooksComponent
+      { path: 'users', component: UsersComponent }, // Replace with actual UsersComponent
+      { path: 'books', component: AdminBookingsComponent }, // Replace with actual BooksComponent
       // { path: 'blogs', component: BlogsComponent }, // Replace with actual BlogsComponent
       // { path: 'categories', component: CategoriesComponent }, // Replace with actual CategoriesComponent
     ]

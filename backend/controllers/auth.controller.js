@@ -1,8 +1,8 @@
 const User = require('../models/User');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
-// Login user
 exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
 
@@ -13,16 +13,24 @@ exports.loginUser = async (req, res) => {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    if (user.password !== password) {
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordValid) {
       return res.status(401).json({ message: 'Invalid password' });
     }
 
-    const token = user.getJwtToken()
-  console.log(token);
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
     res.status(200).json({
       message: 'Login successful',
-      user,
+      user: {
+        id: user._id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        phoneNumber: user.phoneNumber,
+        address: user.address,
+      },
       token,
     });
   } catch (err) {
@@ -31,25 +39,24 @@ exports.loginUser = async (req, res) => {
   }
 };
 
-// Signup user
+
 exports.signupUser = async (req, res) => {
   const { firstName, lastName, email, password, phoneNumber, address } = req.body;
-  
+
   try {
-    if(firstName === "" || lastName === "" || email === "" || password === "" || phoneNumber === "" || address === ""){
+    if (!firstName || !lastName || !email || !password || !phoneNumber || !address) {
       return res.status(400).json({ message: 'All fields are required' });
     }
 
-    const existingUser = await User.findOne({email:email});
+    const existingUser = await User.findOne({ email });
 
-    if(existingUser){
+    if (existingUser) {
       return res.status(400).json({ message: 'Email is already registered' });
     }
-    
+
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = new User({
-      _id: new mongoose.Types.ObjectId(),
       firstName,
       lastName,
       email,
@@ -60,19 +67,43 @@ exports.signupUser = async (req, res) => {
 
     const newUser = await user.save();
 
-    const token = newUser.getJwtToken()
-    console.log(token);
+    const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-    return res.status(200).json({
+    res.status(200).json({
       message: 'Signup successful',
-      user: newUser,
+      user: {
+        id: newUser._id,
+        firstName: newUser.firstName,
+        lastName: newUser.lastName,
+        email: newUser.email,
+        phoneNumber: newUser.phoneNumber,
+        address: newUser.address,
+      },
       token,
     });
-    
   } catch (err) {
     console.error('Error signing up user:', err.message);
     res.status(500).json({ message: 'Server error', error: err.message });
   }
-}
+};
 
+
+exports.getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find(); // Fetch all users from the database
+    const sanitizedUsers = users.map(({ _id, firstName, lastName, email, phoneNumber, address }) => ({
+      id: _id,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      address,
+    })); // Remove sensitive fields like passwords
+
+    res.status(200).json(sanitizedUsers);
+  } catch (err) {
+    console.error('Error fetching users:', err.message);
+    res.status(500).json({ message: 'Server error', error: err.message });
+  }
+};
 

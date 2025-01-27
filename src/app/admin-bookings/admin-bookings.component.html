@@ -21,26 +21,26 @@
           <th class="border px-4 py-2">Actions</th>
         </tr>
       </thead>
-      <tbody>
-        <!-- Loop through bookings array -->
-        <tr *ngFor="let booking of bookings">
-          <td class="border px-4 py-2">{{ booking?.name }}</td>
-          <td class="border px-4 py-2">{{ booking?.email }}</td>
-          <td class="border px-4 py-2">{{ booking?.phone }}</td>
-          <td class="border px-4 py-2">{{ booking?.eventType }}</td>
-          <td class="border px-4 py-2">{{ booking?.participants }}</td>
-          <td class="border px-4 py-2">{{ booking?.appointmentDate | date }}</td>
-          <td class="border px-4 py-2">{{ booking?.appointmentTime }}</td>
-          <td class="border px-4 py-2">
-            <button (click)="editBooking(booking?._id)" class="bg-blue-500 text-white px-3 py-1 rounded">
-              Edit
-            </button>
-            <button (click)="deleteBooking(booking?._id)" class="bg-red-500 text-white px-3 py-1 rounded">
-              Delete
-            </button>
-          </td>
-        </tr>
-      </tbody>
+    <tbody>
+      <tr *ngFor="let booking of bookings">
+        <td class="border px-4 py-2">{{ booking?.name }}</td>
+        <td class="border px-4 py-2">{{ booking?.email }}</td>
+        <td class="border px-4 py-2">{{ booking?.phone }}</td>
+        <td class="border px-4 py-2">{{ booking?.eventType }}</td>
+        <td class="border px-4 py-2">{{ booking?.participants }}</td>
+        <td class="border px-4 py-2">{{ booking?.appointmentDate | date }}</td>
+        <td class="border px-4 py-2">{{ booking?.appointmentTime }}</td>
+        <td class="border px-4 py-2">
+          <button (click)="editBooking(booking?._id)" class="bg-blue-500 text-white px-3 py-1 rounded">
+            Edit
+          </button>
+          <button (click)="deleteBooking(booking?._id)" class="bg-red-500 text-white px-3 py-1 rounded">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+
     </table>
   </div>
 </div>

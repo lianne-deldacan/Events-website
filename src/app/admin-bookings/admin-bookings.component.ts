@@ -7,36 +7,42 @@ import { BookingService } from '../services/booking.service';
   styleUrls: ['./admin-bookings.component.css']
 })
 export class AdminBookingsComponent implements OnInit {
-  bookings: any[] = []; 
+  bookings: any[] = []; // Array to hold booking data
 
   constructor(private bookingService: BookingService) {}
 
   ngOnInit(): void {
-    this.getBookings(); // Fetch bookings on component initialization
+    this.getBookings(); // Fetch bookings when the component initializes
   }
 
-  // Fetch all bookings
- getBookings(): void {
-  this.bookingService.getAllBookings().subscribe(
-    (response) => {
-      console.log('API response:', response); // Log the response
-      this.bookings = Array.isArray(response) ? response : response.bookings; // Handle both cases
-    },
-    (error) => {
-      console.error('Error fetching bookings:', error);
-      alert('Failed to fetch bookings. Please try again.');
-    }
-  );
-}
+  // Fetch all bookings from the backend
+  getBookings(): void {
+    this.bookingService.getAllBookings().subscribe(
+      (response) => {
+        console.log('API response:', response); // Log the API response for debugging
+        // Check if response contains a bookings property or is an array
+        if (Array.isArray(response)) {
+          this.bookings = response; // If the response is directly an array of bookings
+        } else if (response.bookings && Array.isArray(response.bookings)) {
+          this.bookings = response.bookings; // Handle nested bookings property
+        } else {
+          this.bookings = []; // Fallback in case of unexpected structure
+        }
+      },
+      (error) => {
+        console.error('Error fetching bookings:', error); // Log errors
+        alert('Failed to fetch bookings. Please try again later.');
+      }
+    );
+  }
 
-
-  // Edit a booking (placeholder for actual functionality)
+  // Edit booking logic (placeholder)
   editBooking(id: string): void {
     alert(`Edit booking with ID: ${id}`);
-    // Add your edit logic here
+    // Implement your edit functionality here
   }
 
-  // Delete a booking
+  // Delete booking by ID
   deleteBooking(id: string): void {
     if (confirm('Are you sure you want to delete this booking?')) {
       this.bookingService.deleteBooking(id).subscribe(
@@ -45,7 +51,7 @@ export class AdminBookingsComponent implements OnInit {
           this.getBookings(); // Refresh bookings after deletion
         },
         (error) => {
-          console.error('Error deleting booking:', error);
+          console.error('Error deleting booking:', error); // Log errors
           alert('Failed to delete booking. Please try again.');
         }
       );

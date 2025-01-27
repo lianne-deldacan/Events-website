@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class UserService {
-  private apiUrl = 'http://localhost:5000/api/users'; // Update with your actual API endpoint
+  private apiUrl = 'http://localhost:5000/api/auth/users'; // Update with your actual API endpoint
 
   constructor(private http: HttpClient) {}
 

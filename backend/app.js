@@ -14,7 +14,11 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:4200', // Frontend URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
+}));
+
 app.use(bodyParser.json());
 
 // Routes

@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const bookingRoutes = require('./routes/book.routes');
 const authRoutes = require('./routes/auth.routes');
+const categoryRoutes = require('./routes/category.routes');
+const blogRoutes = require('./routes/blog.routes');
 
 
 // Load environment variables
@@ -24,6 +26,8 @@ app.use(bodyParser.json());
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/bookings', bookingRoutes);
+app.use('/api/categories', categoryRoutes);
+app.use('/api/blogs', blogRoutes);
 
 // MongoDB Connection
 const connectDB = async () => {

@@ -33,6 +33,9 @@ import { RouterModule } from '@angular/router';
 import { AuthService } from './services/auth.service';
 import { AdminBookingsComponent } from './admin-bookings/admin-bookings.component';
 import { UsersComponent } from './users/users.component';
+import { CategoryComponent } from './category/category.component';
+import { BlogsComponent } from './blogs/blogs.component';
+import { AdminBlogsComponent } from './admin-blogs/admin-blogs.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +65,10 @@ import { UsersComponent } from './users/users.component';
     AdminDashboardComponent,
     SidebarComponent,
     AdminBookingsComponent,
-    UsersComponent
+    UsersComponent,
+    CategoryComponent,
+    BlogsComponent,
+    AdminBlogsComponent
   ],
   imports: [
     BrowserModule,

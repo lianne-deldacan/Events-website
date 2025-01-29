@@ -1,13 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const blogController = require('../controllers/blog.controller');
-const validateBlog = require('../middleware/blogValidation');
 
-// Routes for blog management
-router.get('/blogs', blogController.getAllBlogs);
-router.get('/blogs/:id', blogController.getBlogById);
-router.post('/blogs', validateBlog, blogController.createBlog);
-router.put('/blogs/:id', validateBlog, blogController.updateBlog);
-router.delete('/blogs/:id', blogController.deleteBlog);
+// Blog routes
+router.post('/', blogController.addBlog); // Create a blog
+router.get('/', blogController.getAllBlogs); // Get all blogs
+router.get('/:id', blogController.getBlogById); // Get a blog by ID
+router.put('/:id', blogController.updateBlog); // Update a blog
+router.delete('/:id', blogController.deleteBlog); // Delete a blog
 
 module.exports = router;

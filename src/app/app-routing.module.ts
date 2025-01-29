@@ -25,12 +25,7 @@ import { AdminBookingsComponent } from './admin-bookings/admin-bookings.componen
 import { UsersComponent } from './users/users.component';
 import { CategoryComponent } from './category/category.component';
 import { AdminBlogsComponent } from './admin-blogs/admin-blogs.component';
-
-// Add placeholder components for admin subroutes (replace these with actual components)
-// import { UsersComponent } from './admin-users/users.component';
-// import { BooksComponent } from './admin-books/books.component';
-// import { BlogsComponent } from './admin-blogs/blogs.component';
-// import { CategoriesComponent } from './admin-categories/categories.component';
+import { BlogsComponent } from './blogs/blogs.component';
 
 const routes: Routes = [
   // Public-facing routes
@@ -54,6 +49,7 @@ const routes: Routes = [
   { path: 'logistics', component: LogisticsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignUpComponent },
+  { path: 'blogs', component: BlogsComponent },
 
   // Admin layout routes
   {

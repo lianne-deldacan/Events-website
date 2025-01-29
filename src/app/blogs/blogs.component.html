@@ -1,1 +1,43 @@
-<p>blogs works!</p>
+<div class="container mx-auto p-6">
+  <h1 class="text-2xl font-bold mb-6">Latest Blogs</h1>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div *ngFor="let blog of blogs" class="bg-white p-4 rounded-lg shadow-md">
+      <h2 class="text-xl font-semibold">{{ blog.title }}</h2>
+      <p class="text-gray-600 text-sm">By <strong>Timeless Events Personnel</strong> • {{ blog.createdAt |
+        date:'mediumDate' }}</p>
+      <p class="mt-2 text-gray-700 truncate">{{ blog.content }}</p>
+      <button (click)="openBlog(blog)" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded">Read More</button>
+
+      <!-- Comment Section -->
+      <div class="mt-6 border-t pt-4">
+        <h3 class="text-lg font-semibold mb-2">Comments</h3>
+
+        <!-- Default User Avatar & Comment Input -->
+        <div class="flex items-center space-x-4">
+          <div class="w-10 h-10 rounded-full overflow-hidden bg-gray-200 flex justify-center items-center">
+            <svg class="w-8 h-8 text-gray-500" fill="currentColor" viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd">
+              </path>
+            </svg>
+          </div>
+
+          <input type="text" class="border p-2 w-full rounded-md" placeholder="Write a comment..." disabled>
+          <button class="bg-gray-400 text-white px-4 py-2 rounded cursor-not-allowed" disabled>Post Comment</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Blog Modal -->
+  <div *ngIf="selectedBlog" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+    <div class="bg-white p-6 rounded-lg shadow-md max-w-2xl">
+      <h2 class="text-xl font-bold">{{ selectedBlog.title }}</h2>
+      <p class="text-gray-600 text-sm">By <strong>Timeless Events Personnel</strong> • {{ selectedBlog.createdAt |
+        date:'mediumDate' }}</p>
+      <p class="mt-4 text-gray-700">{{ selectedBlog.content }}</p>
+      <button (click)="selectedBlog = null" class="mt-4 bg-red-500 text-white px-4 py-2 rounded">Close</button>
+    </div>
+  </div>
+</div>

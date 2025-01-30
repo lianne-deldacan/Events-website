@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'events-website';
+
+    hideHeader = false;
+
+  constructor(private router: Router) {
+    this.router.events.subscribe(() => {
+      const currentUrl = this.router.url;
+      this.hideHeader = currentUrl.startsWith('/admin') || currentUrl === '/login' || currentUrl === '/signup';
+    });
+  }
 }
+

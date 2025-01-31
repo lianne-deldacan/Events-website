@@ -1,7 +1,7 @@
+<!-- Users Management Table -->
 <div class="container mx-auto p-6">
   <h2 class="text-xl font-bold mb-4">Users Management</h2>
 
-  <!-- Show message if no users -->
   <div *ngIf="!users || users.length === 0" class="text-center text-gray-500">
     No users to display.
   </div>
@@ -30,15 +30,57 @@
           <td class="border px-4 py-2">{{ user?.phoneNumber }}</td>
           <td class="border px-4 py-2">{{ user?.address }}</td>
           <td class="border px-4 py-2">
-            <button (click)="editUser(user?.id)" class="bg-blue-500 text-white px-3 py-1 rounded">
+            <button (click)="editUser(user?._id)" class="bg-blue-500 text-white px-3 py-1 rounded">
               Edit
             </button>
-            <button (click)="deleteUser(user?.id)" class="bg-red-500 text-white px-3 py-1 rounded">
+            <button (click)="deleteUser(user?._id)" class="bg-red-500 text-white px-3 py-1 rounded">
               Delete
             </button>
           </td>
         </tr>
       </tbody>
     </table>
+  </div>
+</div>
+
+<!-- Modal for Editing User -->
+<div *ngIf="selectedUser" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+  <div class="bg-white p-6 rounded shadow-lg w-96">
+    <h2 class="text-xl font-semibold mb-4">Edit User</h2>
+    <form (ngSubmit)="updateUser()">
+      <div>
+        <label for="firstName" class="block text-sm font-medium">First Name</label>
+        <input id="firstName" [(ngModel)]="selectedUser.firstName" name="firstName" required
+          class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded" />
+      </div>
+      <div class="mt-4">
+        <label for="lastName" class="block text-sm font-medium">Last Name</label>
+        <input id="lastName" [(ngModel)]="selectedUser.lastName" name="lastName" required
+          class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded" />
+      </div>
+      <div class="mt-4">
+        <label for="email" class="block text-sm font-medium">Email</label>
+        <input id="email" [(ngModel)]="selectedUser.email" name="email" required
+          class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded" />
+      </div>
+      <div class="mt-4">
+        <label for="phoneNumber" class="block text-sm font-medium">Phone</label>
+        <input id="phoneNumber" [(ngModel)]="selectedUser.phoneNumber" name="phoneNumber"
+          class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded" />
+      </div>
+      <div class="mt-4">
+        <label for="address" class="block text-sm font-medium">Address</label>
+        <input id="address" [(ngModel)]="selectedUser.address" name="address" required
+          class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded" />
+      </div>
+      <div class="mt-4 flex justify-end">
+        <button type="button" (click)="selectedUser = null" class="bg-gray-500 text-white px-4 py-2 rounded mr-2">
+          Cancel
+        </button>
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">
+          Update User
+        </button>
+      </div>
+    </form>
   </div>
 </div>

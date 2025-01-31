@@ -6,9 +6,9 @@ import { UserService } from '../services/user.service';
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css']
 })
-export class UsersComponent implements OnInit{
-
-    users: any[] = []; // Array to store user data
+export class UsersComponent implements OnInit {
+  users: any[] = []; // Array to store user data
+  selectedUser: any = null; // To store the user being edited
 
   constructor(private userService: UserService) {}
 
@@ -18,22 +18,54 @@ export class UsersComponent implements OnInit{
 
   // Fetch all users
   getUsers(): void {
-    this.userService.getAllUsers().subscribe(
-      (response) => {
-        console.log('API response:', response); // Log the response
-        this.users = Array.isArray(response) ? response : response.users; // Handle array or nested data
-      },
-      (error) => {
-        console.error('Error fetching users:', error);
-        alert('Failed to fetch users. Please try again.');
-      }
-    );
+  this.userService.getAllUsers().subscribe(
+    (response) => {
+      console.log('Fetched users:', response);
+      this.users = response; // Make sure the data is set properly
+    },
+    (error) => {
+      console.error('Error fetching users:', error);
+      alert('Failed to fetch users. Please try again.');
+    }
+  );
+}
+
+
+
+  // Edit a user (populate a form with user data)
+  editUser(id: string): void {
+  console.log(`Selected user ID: ${id}`);
+  console.log('Users:', this.users);
+
+  // Convert both to strings to ensure proper comparison
+  this.selectedUser = this.users.find(user => String(user._id) === String(id));
+  
+  if (!this.selectedUser) {
+    console.error('User not found!');
+    alert('User not found!');
+    return;
   }
 
-  // Edit a user (placeholder for actual functionality)
-  editUser(id: string): void {
-    alert(`Edit user with ID: ${id}`);
-    // Add your edit logic here
+  console.log(`Editing user: ${JSON.stringify(this.selectedUser)}`);
+}
+
+
+
+  // Update a user
+  updateUser(): void {
+    if (this.selectedUser) {
+      this.userService.updateUser(this.selectedUser._id, this.selectedUser).subscribe(
+        (response) => {
+          alert('User updated successfully');
+          this.getUsers(); // Refresh the users list
+          this.selectedUser = null; // Close the modal
+        },
+        (error) => {
+          console.error('Error updating user:', error);
+          alert('Failed to update user. Please try again.');
+        }
+      );
+    }
   }
 
   // Delete a user

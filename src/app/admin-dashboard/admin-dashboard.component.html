@@ -1,28 +1,34 @@
 <div class="admin-dashboard">
-  <!-- Top Bar -->
   <header class="bg-gray-800 text-white flex justify-between items-center p-4">
     <div class="text-lg font-semibold">Events Website</div>
     <button class="bg-red-500 px-4 py-2 rounded hover:bg-red-600">Log Out</button>
   </header>
 
-  <!-- Main Content -->
   <div class="p-6 grid grid-cols-3 gap-4">
-    <!-- Users Card -->
     <div class="bg-white rounded-lg shadow p-4 text-center">
       <h2 class="text-xl font-semibold mb-4">Users</h2>
-      <p class="text-3xl font-bold">3</p>
+      <p class="text-3xl font-bold">{{ usersCount }}</p>
     </div>
 
-    <!-- Books Card -->
     <div class="bg-white rounded-lg shadow p-4 text-center">
-      <h2 class="text-xl font-semibold mb-4">Books (Appointments)</h2>
-      <p class="text-3xl font-bold">5</p>
+      <h2 class="text-xl font-semibold mb-4">Bookings</h2>
+      <p class="text-3xl font-bold">{{ bookingsCount }}</p>
     </div>
 
-    <!-- Blogs Card -->
     <div class="bg-white rounded-lg shadow p-4 text-center">
       <h2 class="text-xl font-semibold mb-4">Blogs</h2>
-      <p class="text-3xl font-bold">40</p>
+      <p class="text-3xl font-bold">{{ blogsCount }}</p>
     </div>
   </div>
-</div>
+
+  <div class="grid grid-cols-2 gap-4 mt-6">
+    <div class="bg-white p-4 shadow rounded-lg">
+      <h2 class="text-xl font-semibold mb-4">Users Growth</h2>
+      <canvas id="userChart"></canvas>
+    </div>
+  
+    <div class="bg-white p-4 shadow rounded-lg">
+      <h2 class="text-xl font-semibold mb-4">Bookings Overview</h2>
+      <canvas id="bookingChart"></canvas>
+    </div>
+  </div>

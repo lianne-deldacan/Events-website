@@ -1,7 +1,7 @@
 
 
 <!--Banner-->
-<div id="default-carousel" class="relative w-full" data-carousel="slide">
+<div id="default-carousel" class="relative w-full h-[500px]" data-carousel="slide">
   <!-- Carousel wrapper -->
   <div class="relative h-[400px] md:h-[600px] overflow-hidden">
     <!-- Item 1 -->
@@ -97,11 +97,11 @@
   </button>
 </div>
 
-<section class="about-us py-16 px-6 bg-[#F3EEEA]">
+<section class="about-us py-16 px-6 bg-[#F3EEEA] ">
   <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
     <!-- Image Section -->
     <div class="w-full md:w-1/2 mb-8 md:mb-0">
-      <img src="assets/about.png" alt="About Us">
+      <img src="assets/about.png" alt="About Us" class="mt-10">
     </div>
 
     <!-- Text Section -->
@@ -134,9 +134,9 @@
 </div>
 
 <!-- Statistics Section -->
-<section class="py-12 bg-gray-50 dark:bg-gray-900">
-  <div class="container mx-auto px-4">
-    <h2 class="text-3xl font-playfair font-bold text-center text-gray-800 dark:text-white mb-8">Statistics</h2>
+<section class="py-12 bg-gray-50 dark:bg-gray-900 h-[400px]">
+  <div class="container mx-auto px-4 mt-10">
+    <h2 class="text-3xl font-playfair font-bold text-center text-gray-800 dark:text-white mb-8">Milestones and Achievements</h2>
     <dl
       class="grid max-w-screen-xl grid-cols-1 gap-6 mx-auto text-center sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 text-gray-900 dark:text-white">
       <div *ngFor="let stat of statistics"

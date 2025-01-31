@@ -7,6 +7,7 @@ const bookingRoutes = require('./routes/book.routes');
 const authRoutes = require('./routes/auth.routes');
 const categoryRoutes = require('./routes/category.routes');
 const blogRoutes = require('./routes/blog.routes');
+const userRoutes = require('./routes/user.routes');
 
 
 // Load environment variables
@@ -19,12 +20,14 @@ const app = express();
 app.use(cors({
   origin: 'http://localhost:4200', // Frontend URL
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 app.use(bodyParser.json());
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
 app.use('/api/bookings', bookingRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/blogs', blogRoutes);
